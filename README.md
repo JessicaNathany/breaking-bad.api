@@ -1,6 +1,6 @@
 # Breaking Bad API <br>
 
-![Uploading image.png…]()
+![image](https://github.com/JessicaNathany/breaking-bad.api/assets/11943572/be267a2f-adf1-4957-bb7f-97fac2cde1e5)
 
 <br/>
 
