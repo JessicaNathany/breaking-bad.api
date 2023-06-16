@@ -16,4 +16,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ConfigDependency\" />
+    <Folder Include="Dtos\" />
+    <Folder Include="Mapping\" />
+  </ItemGroup>
+
 </Project>

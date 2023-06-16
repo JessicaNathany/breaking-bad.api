@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\Context\" />
+    <Folder Include="Data\Repostory\" />
+    <Folder Include="Mapping\" />
+  </ItemGroup>
+
 </Project>
