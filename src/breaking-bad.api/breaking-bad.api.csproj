@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ConfigDependency\" />
     <Folder Include="Dtos\" />
     <Folder Include="Mapping\" />
   </ItemGroup>
