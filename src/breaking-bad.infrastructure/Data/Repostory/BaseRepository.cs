@@ -1,13 +1,14 @@
 ﻿using breaking_bad.domain.Entities;
-using breaking_bad.domain.Interfaces;
+using breaking_bad.domain.Interfaces.Repository;
 using breaking_bad.infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace breaking_bad.infrastructure.Data.Repostory
 {
-    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : Entity, new()
+    public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : Entity, new()
     {
         private readonly BreakingBadContext _context;
+
         protected readonly DbSet<TEntity> _dbSet;
 
         public BaseRepository(BreakingBadContext context)
@@ -61,7 +62,7 @@ namespace breaking_bad.infrastructure.Data.Repostory
             return await _context.SaveChangesAsync();
         }
 
-        public Task UpdateAsync(TEntity entity)
+        public async Task UpdateAsync(TEntity entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
             await SaveAsync(entity);
