@@ -39,6 +39,10 @@ bld/
 
 # Visual Studio 2017 auto generated files
 Generated\ Files/
+/.vs/breaking-bad/FileContentIndex
+/.vs/breaking-bad/v17/.suo
+/.vs/breaking-bad/FileContentIndex/15044472-9902-45c5-a4fc-14c2ee80d27f.vsidx
+/.vs/breaking-bad/FileContentIndex/15044472-9902-45c5-a4fc-14c2ee80d27f.vsidx
 
 # MSTest test Results
 [Tt]est[Rr]esult*/

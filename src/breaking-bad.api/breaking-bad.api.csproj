@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\breaking-bad.application\breaking-bad.application.csproj" />
     <ProjectReference Include="..\breaking-bad.domain\breaking-bad.domain.csproj" />
     <ProjectReference Include="..\breaking-bad.infrastructure\breaking-bad.infrastructure.csproj" />
   </ItemGroup>
