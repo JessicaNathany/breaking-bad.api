@@ -16,4 +16,15 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dtos\" />
+    <Folder Include="Mapping\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\breaking-bad.application\breaking-bad.application.csproj" />
+    <ProjectReference Include="..\breaking-bad.domain\breaking-bad.domain.csproj" />
+    <ProjectReference Include="..\breaking-bad.infrastructure\breaking-bad.infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

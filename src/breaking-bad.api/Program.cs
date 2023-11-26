@@ -1,6 +1,9 @@
+using breaking_bad.api.ConfigDependency;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Register Depndencies
+builder.Services.ResolveDependency();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
