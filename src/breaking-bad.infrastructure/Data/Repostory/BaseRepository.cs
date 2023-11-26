@@ -21,7 +21,7 @@ namespace breaking_bad.infrastructure.Data.Repostory
             return await _dbSet.CountAsync();
         }
 
-        public async Task DeleteAsync(Guid code)
+        public async Task DeleteAsync(Guid code, CancellationToken cancellationToken = default)
         {
             var entity = await _dbSet.FirstOrDefaultAsync(x => x.Code == code);
 
@@ -29,7 +29,7 @@ namespace breaking_bad.infrastructure.Data.Repostory
             await SaveAsync(entity);
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllAsync(bool asNoTracking = false)
+        public async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken = default, bool asNoTracking = false)
         {
             var query = _context.Set<TEntity>();
 
@@ -39,17 +39,17 @@ namespace breaking_bad.infrastructure.Data.Repostory
             return await query.ToListAsync();
         }
 
-        public async Task<TEntity> GetByCodeAsync(Guid code)
+        public async Task<TEntity> GetByCodeAsync(Guid code, CancellationToken cancellationToken = default)
         {
             return await _dbSet.FirstOrDefaultAsync(x => x.Code == code);
         }
 
-        public async Task<TEntity> GetByIdAsync(int id)
+        public async Task<TEntity> GetByIdAsync(int id, CancellationToken cancellationToken = default)
         {
             return await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<TEntity> SaveAsync(TEntity entity)
+        public async Task<TEntity> SaveAsync(TEntity entity, CancellationToken cancellationToken = default)
         {
             _dbSet.Add(entity);
             await SaveChangesAsync();
@@ -62,7 +62,7 @@ namespace breaking_bad.infrastructure.Data.Repostory
             return await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(TEntity entity)
+        public async Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
         {
             _context.Entry(entity).State = EntityState.Modified;
             await SaveAsync(entity);

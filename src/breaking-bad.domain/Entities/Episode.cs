@@ -1,18 +1,17 @@
-﻿using System.Xml.Linq;
-
-namespace breaking_bad.domain.Entities
+﻿namespace breaking_bad.domain.Entities
 {
     public class Episode : Entity
     {
-        public Episode(string name, string description, DateTime airDate, Season season)
+        public Episode(string episodeName, string description, DateTime airDate, Season season, IEnumerable<Character> characters)
         {
-            Name = name;
+            Name = episodeName;
             Description = description;
             AirDate = airDate;
             Season = season;
+            AddCharacters(characters);
         }
 
-        public Episode()
+        public Episode(string name)
         {
         }
 
@@ -48,8 +47,6 @@ namespace breaking_bad.domain.Entities
         /// </summary>
         public Season Season { get; private set; }
 
-        public void AddCharacters(IEnumerable<Character> characters) => _characters.AddRange(characters);
-
         public void ChangeInfo(string name, string description, DateTime airDate, Season season)
         {
             Name = name;
@@ -64,10 +61,6 @@ namespace breaking_bad.domain.Entities
             _characters.AddRange(characters);
         }
 
-        public void RemoveAllCharacters()
-        {
-            if (!_characters.Any())  return;
-            _characters.Clear();
-        }
+        public void AddCharacters(IEnumerable<Character> characters) => _characters.AddRange(characters);
     }
 }

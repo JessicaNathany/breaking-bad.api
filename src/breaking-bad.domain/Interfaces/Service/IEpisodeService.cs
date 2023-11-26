@@ -5,8 +5,12 @@ namespace breaking_bad.domain.Interfaces.Service
 {
     public interface IEpisodeService
     {
-        Task<Result<IEnumerable<Episode>>> GetAllAsync();
+        Task<Result<IEnumerable<Episode>>> GetAllAsync(CancellationToken cancellationToken);
 
-        Task<Result<Episode>> GetByIdAsync(int id);
+        Task<Result<Episode>> GetByIdAsync(int id, CancellationToken cancellationToken);
+
+        Task<Result> CreateAsync(Episode episode, CancellationToken cancellationToken);
+
+        Task<Result> UpdateAsync(Episode episode, CancellationToken cancellationToken = default);
     }
 }
