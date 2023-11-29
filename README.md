@@ -22,7 +22,7 @@ This is a .NET 7 Web API that provides endpoints to access and manage data relat
 The API allows users to retrieve information about characters, episodes, and quotes from the show. <br/><br/>
 
 ## Onion Architecture 📝 <br/>
-[## Onion Architecture 📝 <br/>](https://dotnet.microsoft.com/pt-br/download/dotnet/7.0).
+[Read More <br/>](## Onion Architecture 📝 <br/>).
 
 ## API Documentation 📝 <br/>
 The API endpoints are documented using Swagger
@@ -122,3 +122,6 @@ By the way, guess who suggested this readme?... You're welcome 🥰
 
 This is a .NET 7 Web API that provides endpoints to access and manage data related to the TV show Breaking Bad. <br/>
 The API allows users to retrieve information about characters, episodes, and quotes from the show. <br/><br/>
+
+
+## Onion Architecture 📝 <br/>
