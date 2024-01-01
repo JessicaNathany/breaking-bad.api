@@ -2,6 +2,7 @@
 using breaking_bad.domain.Entities;
 using breaking_bad.domain.Interfaces.Repository;
 using breaking_bad.domain.Interfaces.Service;
+using breaking_bad.domain.Responses;
 using breaking_bad.domain.Share;
 using Microsoft.Extensions.Logging;
 
@@ -35,17 +36,18 @@ namespace breaking_bad.application.Service
             }
         }
 
-        public async Task<Result<Episode>> GetByIdAsync(int id, CancellationToken cancellationToken = default)
+        public async Task<Result<EpisodeResponse>> GetByIdAsync(int id, CancellationToken cancellationToken = default)
         {
             try
             {
                 var episode = await _episodeRepository.GetByIdAsync(id);
 
                 if (episode is null)
-                    return Result<Episode>.Failure("Episode not found");
-                    
+                    return Result<EpisodeResponse>.Failure("Episode not found");
 
-                return Result<Episode>.Success(episode);
+                var episodeResponse = MapperBannerResponse(episode);
+
+                return Result<EpisodeResponse>.Success(episodeResponse);
             }
             catch (Exception ex)
             {
@@ -54,7 +56,7 @@ namespace breaking_bad.application.Service
             }
         }
         
-        public async Task<Result> CreateAsync(Episode episode, CancellationToken cancellationToken = default)
+        public async Task<Result<EpisodeResponse>> CreateAsync(Episode episode, CancellationToken cancellationToken = default)
         {
             try
             {
@@ -62,7 +64,7 @@ namespace breaking_bad.application.Service
 
                 if(episodeRepository != null)
                 {
-                    return Result.Failure($"There is already an episode with this {episode.Id} registered");
+                    return Result<EpisodeResponse>.Failure("There is already an episode with this {episode.Id} registered");
                 }
                 
                 var episodeValidation = new EpoisodeValidation();
@@ -71,8 +73,8 @@ namespace breaking_bad.application.Service
                 if (!episodeValidationResult.IsValid)
                 {
                     var errors = episodeValidationResult.Errors.Select(e => e.ErrorMessage).ToList();
-                    _logger.LogInformation("Validation failed: {ValidationErrors}", string.Join(", ", errors));
-                    return Result.Failure(string.Join(", ", errors));
+                    _logger.LogError("Validation failed: {ValidationErrors}", string.Join(", ", errors));
+                    return Result<EpisodeResponse>.Failure(string.Join(", ", errors));
                 }
 
                 var newEpisode = new Episode(
@@ -83,8 +85,10 @@ namespace breaking_bad.application.Service
                     episode.Characters);
 
                 await _episodeRepository.SaveAsync(newEpisode, cancellationToken);
-                
-                return Result.Success();
+
+                var episodeResponse = MapperBannerResponse(newEpisode);
+
+                return Result<EpisodeResponse>.Success(episodeResponse);
             }
             catch (Exception ex)
             {
@@ -92,14 +96,40 @@ namespace breaking_bad.application.Service
                 throw;
             }
         }
-
+        
         public async Task<Result> UpdateAsync(Episode episode, CancellationToken cancellationToken = default)
         {
             try
             {
-                // to be continued ..
+                var episodeRepository = await _episodeRepository.GetByIdAsync(episode.Id, cancellationToken);
 
-                return Result.Success();
+                if(episodeRepository is null)
+                {
+                    return Result.Failure($"There is no episode with this {episode.Id} registered");
+                }
+
+                var episodeValidation = new EpoisodeValidation();
+                var episodeValidationResult = episodeValidation.Validate(episode);
+
+                if (!episodeValidationResult.IsValid)
+                {
+                    var errors = episodeValidationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                    _logger.LogInformation("Validation failed: {ValidationErrors}", string.Join(", ", errors));
+                    return Result.Failure(string.Join(", ", errors));
+                }
+
+                var episodeUpdate = new Episode(
+                    episode.Name,
+                    episode.Description,
+                    episode.AirDate,
+                    episode.Season,
+                    episode.Characters);
+
+                await _episodeRepository.UpdateAsync(episodeUpdate, cancellationToken);
+
+                var episodeResponse = MapperBannerResponse(episodeUpdate);
+
+                return Result<EpisodeResponse>.Success(episodeResponse);
             }
             catch (Exception ex)
             {
@@ -107,5 +137,20 @@ namespace breaking_bad.application.Service
                 throw;
             }
         }
+
+        private EpisodeResponse MapperBannerResponse(Episode newEpisode)
+        {
+            return new EpisodeResponse
+            {
+                Id = newEpisode.Id,
+                Name = newEpisode.Name,
+                Description = newEpisode.Description,
+                AirDate = newEpisode.AirDate,
+                SeasonId = newEpisode.SeasonId,
+                Season = newEpisode.Season,
+                Characters = newEpisode.Characters
+            };
+        }
+
     }
 }

@@ -11,10 +11,6 @@
             AddCharacters(characters);
         }
 
-        public Episode(string name)
-        {
-        }
-
         /// <summary>
         /// The name of the episode
         /// </summary>
