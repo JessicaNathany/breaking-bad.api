@@ -2,15 +2,6 @@
 {
     public class Episode : Entity
     {
-        public Episode(string episodeName, string description, DateTime airDate, Season season, IEnumerable<Character> characters)
-        {
-            Name = episodeName;
-            Description = description;
-            AirDate = airDate;
-            Season = season;
-            AddCharacters(characters);
-        }
-
         /// <summary>
         /// The name of the episode
         /// </summary>
@@ -43,6 +34,15 @@
         /// </summary>
         public Season Season { get; private set; }
 
+        public Episode(string episodeName, string description, DateTime airDate, Season season, IEnumerable<Character> characters)
+        {
+            Name = episodeName;
+            Description = description;
+            AirDate = airDate;
+            Season = season;
+            AddCharacters(characters);
+        }
+
         public void ChangeInfo(string name, string description, DateTime airDate, Season season)
         {
             Name = name;
@@ -58,5 +58,19 @@
         }
 
         public void AddCharacters(IEnumerable<Character> characters) => _characters.AddRange(characters);
+
+        public void Update(
+            string episodeName, 
+            string description, 
+            DateTime airDate, 
+            Season season, 
+            IEnumerable<Character> characters)
+        {
+            Name = episodeName;
+            Description = description;
+            AirDate = airDate;
+            Season = season;
+            ChangeCharacters(characters);
+        }
     }
 }
