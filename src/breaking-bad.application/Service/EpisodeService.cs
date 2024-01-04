@@ -30,7 +30,7 @@ namespace breaking_bad.application.Service
                 if (episodes == null)
                     return Result<IEnumerable<EpisodeResponse>>.Failure("Episodes not found");
 
-                episodesResponse.AddRange(episodes.Select(MapperBannerResponse));
+                episodesResponse.AddRange(episodes.Select(MapperEpisodeResponse));
 
                 return Result<IEnumerable<EpisodeResponse>>.Success(episodesResponse);
             }
@@ -50,7 +50,7 @@ namespace breaking_bad.application.Service
                 if (episode is null)
                     return Result<EpisodeResponse>.Failure("Episode not found");
 
-                var episodeResponse = MapperBannerResponse(episode);
+                var episodeResponse = MapperEpisodeResponse(episode);
 
                 return Result<EpisodeResponse>.Success(episodeResponse);
             }
@@ -91,7 +91,7 @@ namespace breaking_bad.application.Service
 
                 await _episodeRepository.SaveAsync(newEpisode, cancellationToken);
 
-                var episodeResponse = MapperBannerResponse(newEpisode);
+                var episodeResponse = MapperEpisodeResponse(newEpisode);
 
                 return Result<EpisodeResponse>.Success(episodeResponse);
             }
@@ -127,7 +127,7 @@ namespace breaking_bad.application.Service
 
                 await _episodeRepository.UpdateAsync(episode, cancellationToken);
 
-                var episodeResponse = MapperBannerResponse(episode);
+                var episodeResponse = MapperEpisodeResponse(episode);
 
                 return Result<EpisodeResponse>.Success(episodeResponse);
             }
@@ -138,17 +138,17 @@ namespace breaking_bad.application.Service
             }
         }
 
-        private EpisodeResponse MapperBannerResponse(Episode newEpisode)
+        private EpisodeResponse MapperEpisodeResponse(Episode episode)
         {
             return new EpisodeResponse
             {
-                Id = newEpisode.Id,
-                Name = newEpisode.Name,
-                Description = newEpisode.Description,
-                AirDate = newEpisode.AirDate,
-                SeasonId = newEpisode.SeasonId,
-                Season = newEpisode.Season,
-                Characters = newEpisode.Characters
+                Id = episode.Id,
+                Name = episode.Name,
+                Description = episode.Description,
+                AirDate = episode.AirDate,
+                SeasonId = episode.SeasonId,
+                Season = episode.Season,
+                Characters = episode.Characters
             };
         }
     }
