@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace breaking_bad.infrastructure.Data.Repostory
 {
-    public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : Entity, new()
+    public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : Entity
     {
         private readonly BreakingBadContext _context;
 

@@ -1,0 +1,23 @@
+﻿using breaking_bad.domain.Entities;
+
+namespace breaking_bad.domain.Responses
+{
+    public class CharacterResponse
+    {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string NameActor { get; set; }
+
+        public bool Status { get; set; }
+
+        public string Gender { get; set; }
+
+        public string ImageUrl { get; set; }
+
+        public string Job { get; set; }
+
+        public IEnumerable<Episode> Episodes { get; set; }
+    }
+}

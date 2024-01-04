@@ -119,3 +119,15 @@ By the way, guess who suggested this readme?... You're welcome 🥰
 
 This is a .NET 7 Web API that provides endpoints to access and manage data related to the TV show Breaking Bad. <br/>
 The API allows users to retrieve information about characters, episodes, and quotes from the show. <br/><br/>
+
+
+## Onion Architecture 📝 <br/>
+
+The term 'Onion Architecture' was coined by Jeffrey Palermo in 2008. This architecture offers alternatives for creating 
+applications that are more testable, meaningful, with clear sepration of responsabilities, reduce coupling, and robust 
+database infrastructure.
+
+
+Fonts: 
+- [The Onion Architecture part1 Jeffrey Parlermo](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/)
+
