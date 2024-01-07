@@ -11,13 +11,13 @@ namespace breaking_bad.application.Validations
                 .NotEmpty()
                 .WithMessage("Name is required")
                 .MinimumLength(5)
-                .WithMessage("Name must be longer than 5 characters");
+                .WithMessage("Name must be longer than 5 episodes");
 
             RuleFor(x => x.Description)
                 .NotEmpty()
                 .WithMessage("Description is required")
                 .MinimumLength(20)
-                .WithMessage("Description must be longer than 20 characters");
+                .WithMessage("Description must be longer than 20 episodes");
 
             RuleFor(x => x.SeasonId)
                 .NotEmpty()
@@ -33,7 +33,7 @@ namespace breaking_bad.application.Validations
                 .NotNull()
                 .WithMessage("Characters list cannot be null.")
                 .Must(characters => characters.Any())
-                .WithMessage("There must be at least one character.");
+                .WithMessage("There must be at least one episodes.");
         }
     }
 }

@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="Dtos\" />
-    <Folder Include="Mapping\" />
   </ItemGroup>
 
   <ItemGroup>
