@@ -1,11 +1,12 @@
 {
-  "profiles": {
+  "breaking-bad.api": {
     "http": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ConnectionStrings__BreakingbadConnectionStringMySQL": "server=localhost;port=3307;database=breakingbad;user=root;password=root; sslmode=none"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5113"

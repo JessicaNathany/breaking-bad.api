@@ -13,9 +13,9 @@ namespace breaking_bad.application.Validations
                 .MinimumLength(10)
                 .WithMessage("Name must be longer than 10 characters");
 
-            RuleFor(x => x.Job)
+            RuleFor(x => x.Role)
                 .NotEmpty()
-                .WithMessage("Job is required");
+                .WithMessage("Role is required");
 
             RuleFor(x => x.Gender)
                 .NotEmpty()
@@ -24,10 +24,6 @@ namespace breaking_bad.application.Validations
             RuleFor(x => x.ImageUrl)
                 .NotEmpty()
                 .WithMessage("ImageUrl is required");
-
-            RuleFor(x => x.Status)
-                .NotEmpty()
-                .WithMessage("Status is required");
 
             RuleFor(x => x.NameActor)
                 .NotEmpty()

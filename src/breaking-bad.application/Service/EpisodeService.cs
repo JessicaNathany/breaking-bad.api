@@ -48,7 +48,7 @@ namespace breaking_bad.application.Service
                 var episode = await _episodeRepository.GetByIdAsync(id);
 
                 if (episode is null)
-                    return Result<EpisodeResponse>.Failure("Episode not found");
+                    return Result<EpisodeResponse>.Failure("Episode not found.");
 
                 var episodeResponse = MapperEpisodeResponse(episode);
 

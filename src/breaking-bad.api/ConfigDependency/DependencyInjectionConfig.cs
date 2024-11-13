@@ -12,6 +12,7 @@ namespace breaking_bad.api.ConfigDependency
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IEpisodeRepository, EpisodeRepository>();
             services.AddScoped<IEpisodeService, EpisodeService>();
+            services.AddScoped<ICharacterService, CharacterService>();
         }
     }
 }
