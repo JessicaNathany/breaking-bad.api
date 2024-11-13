@@ -18,6 +18,21 @@
 	🚧  Project 🚀 under construction...  🚧
  </h4>
 
+## Tests 🧪
+To test you can run a database locally, clone this project and execute the command below [clone deste projeto](https://github.com/JessicaNathany/debug-automation) 
+
+Give permission the file .sh
+
+```bash
+ chmod +x breaking-bad-setup.sh
+```
+- Execute this command to create a database locally.
+
+```bash
+ ./breaking-bad-setup.sh
+```
+
+
 This is a .NET 7 Web API that provides endpoints to access and manage data related to the TV show Breaking Bad. <br/>
 The API allows users to retrieve information about characters, episodes, and quotes from the show. <br/><br/>
 
