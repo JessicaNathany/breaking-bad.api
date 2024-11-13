@@ -6,12 +6,12 @@ namespace breaking_bad.domain.Interfaces.Service
 {
     public interface ICharacterService
     {
-        Task<Result<IEnumerable<CharacterResponse>>> GetAllAsync(CancellationToken cancellationToken);
+        Task<Result<IEnumerable<CharacterResponse>>> GetAllAsync();
 
-        Task<Result<CharacterResponse>> GetByIdAsync(int id, CancellationToken cancellationToken);
+        Task<Result<CharacterResponse>> GetByIdAsync(int id);
 
-        Task<Result<CharacterResponse>> CreateAsync(CharacterRequest characterRequest, CancellationToken cancellationToken);
+        Task<Result<CharacterResponse>> CreateAsync(CharacterRequest characterRequest);
 
-        Task<Result<CharacterResponse>> UpdateAsync(CharacterRequest characterRequest, CancellationToken cancellationToken = default);
+        Task<Result<CharacterResponse>> UpdateAsync(CharacterRequest characterRequest);
     }
 }

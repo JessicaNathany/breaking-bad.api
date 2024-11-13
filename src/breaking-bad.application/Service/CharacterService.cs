@@ -18,11 +18,11 @@ namespace breaking_bad.application.Service
             _characterRepository = characterRepository;
             _logger = logger;
         }
-        public async Task<Result<CharacterResponse>> CreateAsync(CharacterRequest characterRequest, CancellationToken cancellationToken)
+        public async Task<Result<CharacterResponse>> CreateAsync(CharacterRequest characterRequest)
         {
             try
             {
-                var character = await _characterRepository.GetByIdAsync(characterRequest.Id, cancellationToken);
+                var character = await _characterRepository.GetByIdAsync(characterRequest.Id);
 
                 if (character != null)
                 {
@@ -42,13 +42,12 @@ namespace breaking_bad.application.Service
                 var newCharacter = new Character(
                     character.Name,
                     character.NameActor,
-                    character.Status,
                     character.Gender,
                     character.ImageUrl,
-                    character.Job,
+                    character.Role,
                     character.Episodes);
 
-                await _characterRepository.SaveAsync(newCharacter, cancellationToken);
+                await _characterRepository.SaveAsync(newCharacter);
 
                 var episodeResponse = MapperCharacterResponse(newCharacter);
 
@@ -61,13 +60,13 @@ namespace breaking_bad.application.Service
             }
         }
 
-        public async Task<Result<IEnumerable<CharacterResponse>>> GetAllAsync(CancellationToken cancellationToken)
+        public async Task<Result<IEnumerable<CharacterResponse>>> GetAllAsync()
         {
             try
             {
                 var characterResponse = new List<CharacterResponse>();
 
-                var characters = await _characterRepository.GetAllAsync(cancellationToken);
+                var characters = await _characterRepository.GetAllAsync();
 
                 if (characters == null)
                     return Result<IEnumerable<CharacterResponse>>.Failure("Character not found");
@@ -83,7 +82,7 @@ namespace breaking_bad.application.Service
             }
         }
 
-        public async Task<Result<CharacterResponse>> GetByIdAsync(int id, CancellationToken cancellationToken)
+        public async Task<Result<CharacterResponse>> GetByIdAsync(int id)
         {
             try
             {
@@ -103,11 +102,11 @@ namespace breaking_bad.application.Service
             }
         }
 
-        public async Task<Result<CharacterResponse>> UpdateAsync(CharacterRequest characterRequest, CancellationToken cancellationToken = default)
+        public async Task<Result<CharacterResponse>> UpdateAsync(CharacterRequest characterRequest)
         {
             try
             {
-                var character = await _characterRepository.GetByIdAsync(characterRequest.Id, cancellationToken);
+                var character = await _characterRepository.GetByIdAsync(characterRequest.Id);
 
                 if (character is null)
                 {
@@ -127,13 +126,12 @@ namespace breaking_bad.application.Service
                 character.Update(
                     character.Name, 
                     character.NameActor, 
-                    character.Status, 
                     character.Gender, 
                     character.ImageUrl,
-                    character.Job,
+                    character.Role,
                     character.Episodes);
 
-                await _characterRepository.UpdateAsync(character, cancellationToken);
+                await _characterRepository.UpdateAsync(character);
 
                 var episodeResponse = MapperCharacterResponse(character);
 
@@ -153,10 +151,9 @@ namespace breaking_bad.application.Service
                 Id = character.Id,
                 Name = character.Name,
                 NameActor = character.NameActor,
-                Status = character.Status,
                 Gender = character.Gender,
                 ImageUrl = character.ImageUrl,
-                Job = character.Job,
+                Job = character.Role,
                 Episodes = character.Episodes
             };
         }

@@ -7,4 +7,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Moq" Version="4.20.70" />
+    <PackageReference Include="xunit" Version="2.6.6" />
+    <PackageReference Include="xunit.extensibility.core" Version="2.6.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\breaking-bad.application\breaking-bad.application.csproj" />
+    <ProjectReference Include="..\..\src\breaking-bad.domain\breaking-bad.domain.csproj" />
+  </ItemGroup>
+
 </Project>
